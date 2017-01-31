@@ -22,12 +22,14 @@ window.addEventListener("load", function() {
 		for (var i = 0; i < 100; i++) {
 			settFarge(i, SVART);
 		}
-		eval("(async () => { "
-			+ "try { " 
-			+ textarea.value.replace("vent", "await vent") 
-			+ " } catch(e) { "
-			+ " } finally { button.removeAttribute('disabled'); } "
-		+ " })()");
+		try {  
+			eval("(async () => { "
+				+ textarea.value.replace("vent", "await vent")
+				+ ";button.removeAttribute('disabled');"
+			+ " })()");
+		} catch(e) { 
+			button.removeAttribute('disabled'); 
+		} 
 	});
 	var code = localStorage.getItem("code");
 	console.log(code);
