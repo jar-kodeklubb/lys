@@ -17,22 +17,33 @@ window.addEventListener("load", function() {
 	}
 	var textarea = document.querySelector("textarea");
 	var button = document.querySelector("button");
+	function unblock() {
+		button.removeAttribute('disabled');
+	}
+	function blink() {
+		textarea.style.background = "#f99";
+		setTimeout(() => {
+			textarea.style.background = "";
+		}, 200)
+	}
+
 	button.addEventListener("click", function() {
 		button.setAttribute("disabled", "");
 		for (var i = 0; i < 100; i++) {
 			settFarge(i, SVART);
 		}
 		try {  
-			eval("(async () => { "
+			eval("(async () => { try { "
 				+ textarea.value.replace("vent", "await vent")
-				+ ";button.removeAttribute('disabled');"
+				+ " } catch(e) { blink() } finally { unblock()  }"
 			+ " })()");
-		} catch(e) { 
-			button.removeAttribute('disabled'); 
+		} catch(e) {
+			blink();
+			unblock();
 		} 
 	});
 	var code = localStorage.getItem("code");
-	console.log(code);
+
 	if (code) textarea.value = code;
 	textarea.addEventListener("keyup", function() {
 		localStorage.setItem("code", textarea.value);
