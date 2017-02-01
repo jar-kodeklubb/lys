@@ -16,8 +16,20 @@ textarea {
 	resize: none;
 }
 button {
-	display: block;
+	float:left;
 	font-size: 100%;
+	background: #ffa400;
+	border-radius: 4px;
+	padding: 7px 10px;
+	border: none;
+	color: #fff;
+}
+button:hover {
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+button:nth-of-type(2) {
+	float:right;
+	background: #0094ca;
 }
 
 #lights {
@@ -43,6 +55,19 @@ button {
     background: linear-gradient(rgb(102,102,102) 0%, rgb(34,34,34) 50%, rgb(51,51,51) 100%);
     transition: background 1s;
 }
+.led:before {
+	content: attr(data-content);
+	z-index: 2;
+	position: relative;
+	top: 10px;
+	left: 0px;
+	font-size: 30%;
+	color: #444;
+	float:left;
+	text-align: center;
+	width: 10px;
+}
+
 
 .led:after {
     display: block;            

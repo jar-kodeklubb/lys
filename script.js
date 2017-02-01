@@ -11,12 +11,13 @@ window.addEventListener("load", function() {
 	for (var i = 0; i < 100; i++) {
 		var l = document.createElement("div");
 		l.className = "led";
+		l.setAttribute("data-content", i);
 		lightsP.appendChild(l);
 		lights.push(l);
 		tenn(i, SVART);
 	}
 	var textarea = document.querySelector("textarea");
-	var button = document.querySelector("button");
+	var button = document.querySelectorAll("button")[0];
 	function unblock() {
 		button.removeAttribute('disabled');
 	}
@@ -59,7 +60,11 @@ window.addEventListener("load", function() {
 	  }
   });
 
-
+	var reset = document.querySelectorAll("button")[1];
+	reset.addEventListener("click", function() {
+		localStorage.removeItem("code");
+		location.href = location.href;
+	});
 
 }, false);
 
