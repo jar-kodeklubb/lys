@@ -34,11 +34,14 @@ window.addEventListener("load", function() {
 			tenn(i, SVART);
 		}
 		try {  
-			eval("(async () => { try { "
+			var code = Babel.transform("(async () => { try { "
 				+ textarea.value.replace("vent", "await vent")
-				+ " } catch(e) { blink() } finally { unblock()  }"
-			+ " })()");
+				+ " } catch(e) { console.log(e); blink() } finally { unblock()  }"
+			+ " })()", { presets: ['es2017'] }).code;
+			console.log(code);
+			eval(code);
 		} catch(e) {
+			console.log(e);
 			blink();
 			unblock();
 		} 
