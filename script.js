@@ -66,6 +66,15 @@ window.addEventListener("load", function() {
 		location.href = location.href;
 	});
 
+	var legend = document.querySelector("#legend");
+	["HVIT", "RØD", "BLÅ", "GRØNN", "GUL", "ROSA", "TURKIS"].forEach((x,i) => {
+		var l = document.createElement("div");
+		l.className = "led";
+		l.setAttribute("data-content", x);
+		legend.appendChild(l);
+		settFarge(l, window[x]);
+	});
+
 }, false);
 
 function range(b,e,s = 1) {
@@ -76,12 +85,17 @@ function color(r,g,b) {
 	return `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`
 }
 
-function tenn(x, [r, g, b]=[255,255,255]) {
+function settFarge(led, [r, g, b]) {
 	var c1 = color(r,g,b);
 	var c2 = color(r*0.9, g*0.9, b*0.9);
 	var c3 = color(r*0.94, g*0.94, b*0.94);
-	lights[x].style.background = "linear-gradient(" + c1 + " 0%, " + c2 + " 50%, " + c3 + " 100%)";
-	lights[x].style.boxShadow = ("0px 0px 5px 1px " + color(r,g,b));
+	led.style.background = "linear-gradient(" + c1 + " 0%, " + c2 + " 50%, " + c3 + " 100%)";
+	led.style.boxShadow = ("0px 0px 5px 1px " + color(r,g,b));
+}
+
+
+function tenn(x, c=[255,255,255]) {
+	settFarge(lights[x], c);
 }
 
 function slukk(x) {
@@ -90,6 +104,7 @@ function slukk(x) {
 
 var RØD = [255, 0, 0];
 var BLÅ = [0,0,255];
+var TURKIS = [0,255,255];
 var GRØNN = [0,255,0];
 var ROSA = [255,0,255];
 var GUL = [255, 255, 0];
