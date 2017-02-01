@@ -18,9 +18,13 @@ window.addEventListener("load", function() {
 	}
 	var textarea = document.querySelector("textarea");
 	var button = document.querySelectorAll("button")[0];
+	var player = document.querySelector("#playa");
+
 	function unblock() {
 		button.removeAttribute('disabled');
+		player.style.display = "";
 	}
+
 	function blink() {
 		textarea.style.background = "#f99";
 		setTimeout(() => {
@@ -33,9 +37,20 @@ window.addEventListener("load", function() {
 		for (var i = 0; i < 100; i++) {
 			tenn(i, SVART);
 		}
-		try {  
-			var code = Babel.transform("(async () => { try { "
-				+ textarea.value.replace("vent", "await vent")
+		try {
+			var code = textarea.value.split(/\n/);
+			player.innerHTML = "";
+			player.style.display = "block";
+			code.forEach(function(x) {
+				var p = document.createElement("pre");
+				player.appendChild(p);
+				p.innerText = x;
+			});
+			code = code.map(function(x,i) {
+				return x + "; await block(" + i + ")";  
+			}).join("\n");
+			code = Babel.transform("(async () => { try { "
+				+ code.replace("vent", "await vent")
 				+ " } catch(e) { console.log(e); blink() } finally { unblock()  }"
 			+ " })()", { presets: ['es2017'] }).code;
 			console.log(code);
@@ -44,7 +59,7 @@ window.addEventListener("load", function() {
 			console.log(e);
 			blink();
 			unblock();
-		} 
+		}
 	});
 	var code = localStorage.getItem("code");
 
@@ -77,8 +92,23 @@ window.addEventListener("load", function() {
 		legend.appendChild(l);
 		settFarge(l, window[x]);
 	});
+	var speed = document.querySelector("input[type=range]");
+	speed.addEventListener("change", function() {
+		delay = 5 * (100 - speed.value);
+	});
 
 }, false);
+
+function selectAll(selector) {
+	return Array.prototype.slice.apply(document.querySelectorAll("#playa pre.active"))
+}
+var delay = 100;
+
+function block(i) {
+	selectAll("#playa pre").map(function(x) { x.className = ""; });
+	document.querySelector("#playa pre:nth-child(" + (i+1) + ")").className = "active";
+	return vent(delay);
+}
 
 function range(b,e,s = 1) {
 	return 

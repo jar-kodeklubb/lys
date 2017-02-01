@@ -7,14 +7,30 @@ body {
 	box-sizing: border-box;
 }
 
-textarea {
+textarea, #playa {
 	border: 1px #eee;
 	padding: 1em;
 	width: 300px;
 	height: 200px;
 	font-size: 100%;
 	resize: none;
+	overflow: auto;
+	font-family: monospace;
+	line-height: 1em;
 }
+pre {
+	margin: 0;
+	padding: 0;
+}
+pre.active {
+	background: #9f9;
+}
+#playa {
+	position: absolute;
+	top: 0px;
+	display: none;
+}
+
 button {
 	float:left;
 	font-size: 100%;
@@ -35,6 +51,8 @@ button:nth-of-type(2) {
 	float:right;
 	background: #0094ca;
 }
+
+
 #legend {
 	clear: both;
 	padding-top: 1em;
@@ -57,6 +75,7 @@ button:nth-of-type(2) {
 }
 #code {
 	width: 300px;
+	position: relative;
 }
 #code, #lights {
 	float:left;
@@ -98,3 +117,23 @@ button:nth-of-type(2) {
     border-bottom-left-radius: 4px 3px;
     background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
 }
+
+input[type=range] {
+	margin-top: 1em;
+	width: 100px;
+	margin-left: 10px;
+}
+
+input[type=range]:after {
+	content: "\1f407";
+	top: -1em;
+	position: relative;
+}
+input[type=range]:before {
+	content: "\1f422";
+	top: -1em;
+	position: relative;
+}
+
+
+
