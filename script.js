@@ -47,10 +47,10 @@ window.addEventListener("load", function() {
 				p.innerText = x;
 			});
 			code = code.map(function(x,i) {
-				return x + "; await block(" + i + ")";  
+				return "block(" + i + "); " + x + "; block(" + i + "); vent(delay);";  
 			}).join("\n");
 			code = Babel.transform("(async () => { try { "
-				+ code.replace("vent", "await vent")
+				+ code.replace(/vent/g, "await vent")
 				+ " } catch(e) { console.log(e); blink() } finally { unblock()  }"
 			+ " })()", { presets: ['es2017'] }).code;
 			console.log(code);
@@ -107,7 +107,6 @@ var delay = 100;
 function block(i) {
 	selectAll("#playa pre").map(function(x) { x.className = ""; });
 	document.querySelector("#playa pre:nth-child(" + (i+1) + ")").className = "active";
-	return vent(delay);
 }
 
 function range(b,e,s = 1) {
