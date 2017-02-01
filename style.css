@@ -27,6 +27,10 @@ button {
 button:hover {
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
+button:disabled {
+	background: #444;
+	color: #666;
+}
 button:nth-of-type(2) {
 	float:right;
 	background: #0094ca;
