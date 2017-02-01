@@ -40,7 +40,8 @@ button {
     height: 10px;
     margin: 5px;
     zoom: 2;
-    background-image: -webkit-linear-gradient(top, #666 0%, #222 50%, #333 100%);
+    background: linear-gradient(rgb(102,102,102) 0%, rgb(34,34,34) 50%, rgb(51,51,51) 100%);
+    transition: background 1s;
 }
 
 .led:after {
@@ -54,5 +55,5 @@ button {
     border-top-left-radius: 4px 3px;
     border-bottom-right-radius: 4px 3px;
     border-bottom-left-radius: 4px 3px;
-    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
 }

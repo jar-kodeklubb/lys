@@ -13,7 +13,7 @@ window.addEventListener("load", function() {
 		l.className = "led";
 		lightsP.appendChild(l);
 		lights.push(l);
-		settFarge(i, SVART);
+		tenn(i, SVART);
 	}
 	var textarea = document.querySelector("textarea");
 	var button = document.querySelector("button");
@@ -30,7 +30,7 @@ window.addEventListener("load", function() {
 	button.addEventListener("click", function() {
 		button.setAttribute("disabled", "");
 		for (var i = 0; i < 100; i++) {
-			settFarge(i, SVART);
+			tenn(i, SVART);
 		}
 		try {  
 			eval("(async () => { try { "
@@ -71,12 +71,16 @@ function color(r,g,b) {
 	return `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`
 }
 
-function settFarge(x, [r, g, b]) {
+function tenn(x, [r, g, b]=[255,255,255]) {
 	var c1 = color(r,g,b);
 	var c2 = color(r*0.9, g*0.9, b*0.9);
 	var c3 = color(r*0.94, g*0.94, b*0.94);
-	lights[x].style.backgroundImage = "-webkit-linear-gradient(top, " + c1 + " 0%, " + c2 + " 50%, " + c3 + " 100%)";
-	lights[x].style.boxShadow = ("0px 0px 5px 0px " + color(r,g,b));
+	lights[x].style.background = "linear-gradient(" + c1 + " 0%, " + c2 + " 50%, " + c3 + " 100%)";
+	lights[x].style.boxShadow = ("0px 0px 5px 1px " + color(r,g,b));
+}
+
+function slukk(x) {
+	tenn(x, SVART);
 }
 
 var RØD = [255, 0, 0];
