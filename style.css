@@ -122,17 +122,21 @@ input[type=range] {
 	margin-top: 1em;
 	width: 100px;
 	margin-left: 10px;
+	position: relative;
 }
 
 input[type=range]:after {
 	content: "\1f407";
 	top: -1em;
-	position: relative;
+	position: absolute;
+	right: 0em;
+	z-index: 10;
 }
 input[type=range]:before {
 	content: "\1f422";
 	top: -1em;
-	position: relative;
+	position: absolute;
+	z-index: 10;
 }
 
 

@@ -8,7 +8,7 @@ function vent(ms = 0) {
 window.addEventListener("load", function() {
 	var lightsP = document.getElementById("lights");
 
-	for (var i = 0; i < 100; i++) {
+	for (var i = 0; i < 300; i++) {
 		var l = document.createElement("div");
 		l.className = "led";
 		l.setAttribute("data-content", i);
@@ -34,7 +34,7 @@ window.addEventListener("load", function() {
 
 	button.addEventListener("click", function() {
 		button.setAttribute("disabled", "");
-		for (var i = 0; i < 100; i++) {
+		for (var i = 0; i < 300; i++) {
 			tenn(i, SVART);
 		}
 		try {
