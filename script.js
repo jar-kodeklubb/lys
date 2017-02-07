@@ -84,19 +84,6 @@ window.addEventListener("load", function() {
 		location.href = location.href;
 	});
 
-	var sender = document.querySelectorAll("button")[2];
-	sender.addEventListener("click", function() {
-		var code = textarea.value;
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function () {
-		  if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        alert(xhr.responseText);
-      }
-    }
-		xhr.open("POST", "http://erlend.oftedal.no:8888/1982371892371982739")
-		xhr.send(code);
-	});
-
 	var legend = document.querySelector("#legend");
 	["HVIT", "RØD", "BLÅ", "GRØNN", "GUL", "ROSA", "TURKIS"].forEach((x,i) => {
 		var l = document.createElement("div");
