@@ -1,9 +1,10 @@
 ﻿var lights = [];
 
 function vent(ms = 0) {
+	if (stopRunning) return;
   return new Promise(r => setTimeout(r, ms));
 }
-
+var stopRunning = false;
 
 window.addEventListener("load", function() {
 	var lightsP = document.getElementById("lights");
@@ -21,8 +22,9 @@ window.addEventListener("load", function() {
 	var player = document.querySelector("#playa");
 
 	function unblock() {
-		button.removeAttribute('disabled');
 		player.style.display = "";
+		stop.style.display = "none";
+		button.style.display = "block";		
 	}
 
 	function blink() {
@@ -33,7 +35,10 @@ window.addEventListener("load", function() {
 	}
 
 	button.addEventListener("click", function() {
-		button.setAttribute("disabled", "");
+		stop.style.display = "block";
+		button.style.display = "none";		
+		stopRunning = false;
+
 		for (var i = 0; i < 300; i++) {
 			tenn(i, SVART);
 		}
@@ -78,10 +83,17 @@ window.addEventListener("load", function() {
 	  }
   });
 
-	var reset = document.querySelectorAll("button")[1];
+	var reset = document.querySelectorAll("button")[2];
 	reset.addEventListener("click", function() {
 		localStorage.removeItem("code");
 		location.href = location.href;
+	});
+
+
+	var stop = document.querySelectorAll("button")[1];
+	stop.addEventListener("click", function() {
+		stopRunning = true;
+		unblock();
 	});
 
 	var legend = document.querySelector("#legend");
