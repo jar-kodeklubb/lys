@@ -85,8 +85,10 @@ window.addEventListener("load", function() {
 
 	var reset = document.querySelectorAll("button")[2];
 	reset.addEventListener("click", function() {
-		localStorage.removeItem("code");
-		location.href = location.href;
+		if (confirm("Er du sikker på at du vil slette all koden og begynne på ny?")) {
+			localStorage.removeItem("code");
+			location.href = location.href;
+		}
 	});
 
 
