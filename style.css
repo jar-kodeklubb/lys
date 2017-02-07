@@ -21,6 +21,7 @@ textarea, #playa {
 pre {
 	margin: 0;
 	padding: 0;
+	background: #fff;
 }
 pre.active {
 	background: #9f9;
